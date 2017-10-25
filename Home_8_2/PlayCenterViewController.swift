@@ -14,19 +14,32 @@ class PlayCenterViewController: UIViewController {
     @IBOutlet weak var buttomOne: UIButton!
     @IBOutlet weak var buttomTwo: UIButton!
     @IBOutlet weak var buttomThree: UIButton!
+    @IBOutlet weak var timerIndicationLabel: UILabel!
     
     var userScore = 0
+    var count = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         randomButtomIndex()
-        var timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
-
+        timerIndicationLabel.text = "00 : " + "\(count)"
+        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(update), userInfo: nil, repeats: true)
     }
     
     @objc func update() {
-        // Something cool
+        count -= 1
+        if count >= 10 {
+            timerIndicationLabel.text = "00 : " + String(count)
+        }
+        else if count > 0 {
+            timerIndicationLabel.text = "00 : " + "0" + String(count)
+        }
+        
+        else {
+            performSegue(withIdentifier: "showEndScreen", sender: Any?.self)
+        }
     }
+    
     
     func randomButtomIndex() {
         let i = Int(arc4random() % 3)
@@ -57,8 +70,5 @@ class PlayCenterViewController: UIViewController {
             let destinationVC = segue.destination as? EndGameViewController {
             destinationVC.finishScoreDescription = String(userScore)
         }
-                
     }
-    
-
 }
