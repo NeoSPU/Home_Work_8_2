@@ -8,18 +8,14 @@
 
 import UIKit
 
+
 class EndGameViewController: UIViewController {
-   
+    
     @IBOutlet weak var finishScoreLabel: UILabel!
     var finishScoreDescription: String?
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         finishScoreLabel.text = finishScoreDescription
     }
-
-
- 
 }
