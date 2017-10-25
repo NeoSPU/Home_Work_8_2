@@ -9,28 +9,22 @@
 import UIKit
 
 class StartViewController: UIViewController {
-
+    
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var lastScoreLabe: UILabel!
     
-    var lastScoreSourse: String?
+    var lastScoreSourse: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
+    
     @IBAction func returnToStartScreen(_ sender: UIStoryboardSegue) {
-            if let sourceVC = sender.source as? EndGameViewController,
-                let lastScoreSourse = sourceVC.finishScoreDescription {
-                    lastScoreLabe.text = String(lastScoreSourse)
-                }
+        if let sourceVC = sender.source as? EndGameViewController,
+            let lastScoreSourse = sourceVC.finishScoreDescription {
+            lastScoreLabe.text = lastScoreSourse
         }
-    
-    
-    @IBAction func startButtomPressed(_ sender: UIButton) { }
-    
-        
-
+    }
 }
